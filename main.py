@@ -21,6 +21,12 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.05)
     car_man.create_cars()
+    for car in car_man.cars:
+        car.move()
+        if frogger.distance(car) < 20:
+            game_is_on = False
+            scoreboard = Scoreboard()
+            #scoreboard.game_over()
     screen.update()
 
 screen.exitonclick()

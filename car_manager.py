@@ -15,7 +15,7 @@ class Car(Turtle):
         self.penup()
         self.left(180)
         self.color(random.choice(COLORS))
-        self.y_start = random.randint(-260, 260)
+        self.y_start = random.randint(-240, 260)
         self.x_start = 300
         self.goto((self.x_start, self.y_start))
 
@@ -27,9 +27,10 @@ class CarManager:
         self.cars = []
 
     def create_cars(self):
-        new_car = Car()
-        self.cars.append(new_car)
-        for c in self.cars:
-            c.move()
-        time.sleep(0.3)
+        random_chance = random.randint(1, 6)
+        if random_chance == 1:
+            new_car = Car()
+            self.cars.append(new_car)
+        
+            
 
