@@ -21,8 +21,9 @@ class Car(Turtle):
 
     def move(self):
         self.forward(STARTING_MOVE_DISTANCE)
-        if self.xcor() < -320:
-            self.goto(self.x_start, random.randint(-240, 260))
+        #if self.xcor() < -320:
+            #self.goto(self.x_start, random.randint(-240, 260))
+            
 
     def speed_up(self):
         global STARTING_MOVE_DISTANCE
@@ -33,7 +34,7 @@ class CarManager:
         self.cars = []
 
     def create_cars(self):
-        random_chance = random.randint(1, 8)
+        random_chance = random.randint(1, 6)
         if random_chance == 1:
             new_car = Car()
             self.cars.append(new_car)
