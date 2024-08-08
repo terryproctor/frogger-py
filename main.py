@@ -1,18 +1,18 @@
 import time
 from turtle import Screen
 from player import Player
-from car_manager import CarManager, Car
+from car_manager import CarManager
 from scoreboard import Scoreboard
 
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.tracer(0)
+scoreboard = Scoreboard()
+scoreboard.update_scoreboard()
 
 frogger = Player()
 
-# new_car = Car()
 car_man = CarManager()
-
 
 screen.listen()
 screen.onkeypress(frogger.move, "Up")
@@ -23,10 +23,13 @@ while game_is_on:
     car_man.create_cars()
     for car in car_man.cars:
         car.move()
-        if frogger.distance(car) < 20:
+        if frogger.distance(car) < 18:
             game_is_on = False
-            scoreboard = Scoreboard()
-            #scoreboard.game_over()
+            scoreboard.game_over()
+        if frogger.ycor() > 280:
+            frogger.goto(0, -280)
+            scoreboard.level_up()
+            car_man.speed_up()
     screen.update()
 
 screen.exitonclick()
