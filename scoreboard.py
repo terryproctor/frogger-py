@@ -23,3 +23,24 @@ class Scoreboard(Turtle):
     def game_over(self):
         self.goto(0, 0)
         self.write("Game Over", align="center", font=FONT)
+        self.update_high_score()
+        self.level = 1
+
+    def high_score(self):
+        with open("high_score.txt") as file:
+            
+            try:
+                h_score = int(file.read())
+                if self.level > h_score:
+                    with open("high_score.txt", mode="w") as file:
+                        file.write(str(self.level))
+            except:
+                with open("high_score.txt", mode="w") as file:
+                    file.write(str(self.level))
+                    h_score = self.level
+        return h_score
+    
+    def update_high_score(self):
+        self.goto(0, 200)
+        message = f"High Score: {self.high_score()}"
+        self.write(message, align="center", font=FONT)
